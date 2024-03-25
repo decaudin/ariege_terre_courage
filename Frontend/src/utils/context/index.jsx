@@ -18,16 +18,16 @@ export const ThemeProvider = ({ children }) => {
     )
 }
 
-// CONTEXT POUR LES RANDONNEES
+// CONTEXTE POUR LES RANDONNEES
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
 
-    const { data } = useFetch('/Data/salau.json');
+    const { data, isLoading } = useFetch('/Data/data.json');
   
     return (
-      <DataContext.Provider value={{ data }}>
+      <DataContext.Provider value={{ data, isLoading }}>
         {children}
       </DataContext.Provider>
     );

@@ -15,12 +15,12 @@ export const useFetch = (url) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if (!url) return 
+        if (!url) return
+        setIsLoading(true);  
 
         const fetchData = async () => {
 
             try {
-                setIsLoading(true);
                 const response = await fetch(url);
                 const data = await response.json();
                 setData(data); 
@@ -40,6 +40,6 @@ export const useFetch = (url) => {
 // HOOK POUR LE CONTEXT DES RANDONNEES
 
 export const useData = () => {
-    const { data } = useContext(DataContext)
-    return { data }
+    const { data, isLoading } = useContext(DataContext)
+    return { data, isLoading }
 }

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useFetch } from '../../utils/hooks';
+import { useData } from '../../utils/hooks';
+import { Loader } from "../../utils/style/loader"
 
 const MapWrapper = styled.div`
   margin: auto;
@@ -16,7 +17,7 @@ width: 100%;
 height: 100%;
 `
 
-const MapWithPath = () => {
+const Map = () => {
 
     const initialLat = 42.86365629976034;
     const initialLon = 1.2015081078083822;
@@ -28,32 +29,44 @@ const MapWithPath = () => {
 
     const [path, setPath] = useState([]);
 
-    const { data, isLoading } = useFetch('/Data/salau.json');
+    const { data, isLoading } = useData();
 
     const navigate = useNavigate();
 
     useEffect(() => {
       if (!isLoading) {
-        const coords = data.flatMap(item => item.coordinates.map(coord => [parseFloat(coord.lat), parseFloat(coord.lon)]));
-        setPath(coords);
+        const pathsWithId = data.map(hike => ({
+          id: hike.id,
+          coordinates: hike.coordinates.map(coord => [parseFloat(coord.lat), parseFloat(coord.lon)])
+        }));
+        setPath(pathsWithId);
       }
     }, [data, isLoading]);
   
-    const handleClick = () => {
-      navigate('/hikes/:id');
-    }; 
+    const handleClick = (hikeId) => () => {
+      navigate(`/hikes/${hikeId}`);
+      window.scrollTo(0, 0);      
+    };
+    
+    const handleMapClick = (e) => {
+      e.originalEvent.stopPropagation();
+    };
 
   return (
     <MapWrapper>
-      <StyledMapContainer center={[initialLat, initialLon]} zoom={11} maxBounds={maxBounds} maxBoundsViscosity={1.0}>
+      {isLoading && <Loader />}
+      <StyledMapContainer center={[initialLat, initialLon]} zoom={11} maxBounds={maxBounds} maxBoundsViscosity={1.0} onClick={handleMapClick}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        <Polyline positions={path} color="blue" onClick={handleClick}/>
+        {path.map((hike, index) => (
+          <Polyline key={index} positions={hike.coordinates} color="blue" eventHandlers={{click: handleClick(hike.id)}}/>
+        ))}
       </StyledMapContainer>
     </MapWrapper>
   );
 }
 
-export default MapWithPath;
+export default Map;
+

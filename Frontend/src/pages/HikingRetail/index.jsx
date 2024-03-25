@@ -1,6 +1,10 @@
 import styled from "styled-components";
-import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useData, useTheme } from "../../utils/hooks";
+import { Loader } from "../../utils/style/loader";
+import React from "react"; // A voir si nécessaire ..
+import colors from "../../utils/style/colors"
 
 const HikesWrapper = styled.div`
 display: flex;
@@ -11,7 +15,7 @@ align-items: center;
 const Title = styled.h2`
 margin-top: 20px;
 margin-bottom: 40px;
-color: ${({ theme }) => (theme === 'light' ? '#1D6154' : '#ffffff')};
+color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
 `
 
 const Text = styled.p`
@@ -33,7 +37,7 @@ const Elevation = styled(Text)``
 
 const ImagePresentation = styled.h3`
 margin-top: 30px;
-color: ${({ theme }) => (theme === 'light' ? '#1D6154' : '#ffffff')};
+color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
 `
 
 const ImageWrapper = styled.div`
@@ -45,13 +49,14 @@ justify-content: space-between;
 
 const Image = styled.img`
 width: 30%;
-height: auto;
+height: 284px;
+object-fit: cover;
 `
 
 const StyledLink = styled(Link)`
 margin-top: 50px;
 text-decoration: none;
-background-color: #1D6154;
+background-color: ${colors.primary};
 color: #ffffff;
 border-radius: 2em;
 padding: 15px 20px 15px 20px;
@@ -62,33 +67,52 @@ cursor: pointer;
 
 const HikingRetail = () => {
 
-    const { data } = useData();
+    const { data, isLoading } = useData();
 
     const { theme } = useTheme();
 
     const { id } = useParams();
 
+    const navigate = useNavigate();
+
     const hikeDetails = data.find(hike => hike.id === String(id));
 
-    if (!hikeDetails) {
-        return <div>Randonnée non trouvée</div>;
-    }
+    const convertToHoursAndMinutes = (duration) => {
+        const hours = Math.floor(duration);
+        const minutes = Math.round((duration - hours) * 60);
+        if (minutes === 0) {
+            return `${hours}h`;
+        } else {
+            return `${hours}h${minutes}min`;
+        }
+    };
+
+    useEffect(() => {
+        if (!isLoading && !hikeDetails) {
+          navigate("/Error");
+        }
+    }, [isLoading, hikeDetails, navigate]); 
 
     return (
         <HikesWrapper>
-            <Title theme={theme}>{hikeDetails.title}</Title>
-            <Description theme={theme}>{hikeDetails.description}</Description>
-            <Duration theme={theme}>Durée AR : {hikeDetails.duration} heure(s)</Duration>
-            <Length theme={theme}>Distance totale : {hikeDetails.length} km</Length>
-            <Elevation theme={theme}>Altitude de départ: {hikeDetails.elevationStart} mètres</Elevation>
-            <Elevation theme={theme}>Altitude d'arrivée: {hikeDetails.elevationEnd} mètres</Elevation>
-            <ImagePresentation theme={theme}>Un aperçu des paysages :</ImagePresentation>
-            <ImageWrapper>
-                {hikeDetails.imageUrls.map(imageUrl => (
-                    <Image key={imageUrl} src={process.env.PUBLIC_URL + imageUrl} alt={imageUrl} />
-                ))}
-          </ImageWrapper>
-          <StyledLink to="/hikes">Revenir à la liste des randonnées</StyledLink>
+            {isLoading && <Loader theme={theme} />}
+            {hikeDetails && (
+                <>
+                    <Title theme={theme}>{hikeDetails.title}</Title>
+                    <Description theme={theme}>{hikeDetails.description}</Description>
+                    <Duration theme={theme}>Durée AR : {convertToHoursAndMinutes(hikeDetails.duration)}</Duration>
+                    <Length theme={theme}>Distance totale : {hikeDetails.length} km</Length>
+                    <Elevation theme={theme}>Altitude de départ: {hikeDetails.elevationStart} mètres</Elevation>
+                    <Elevation theme={theme}>Altitude d'arrivée: {hikeDetails.elevationEnd} mètres</Elevation>
+                    <ImagePresentation theme={theme}>Un aperçu des paysages :</ImagePresentation>
+                    <ImageWrapper>
+                        {hikeDetails.imageUrls.map(imageUrl => (
+                            <Image key={imageUrl} src={process.env.PUBLIC_URL + imageUrl} alt={imageUrl} />
+                        ))}
+                    </ImageWrapper>
+                    <StyledLink to="/hikes">Revenir à la liste des randonnées</StyledLink>
+                </>
+            )}
         </HikesWrapper>
     );
 }

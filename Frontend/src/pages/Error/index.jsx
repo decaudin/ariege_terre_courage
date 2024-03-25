@@ -1,6 +1,7 @@
-import LogoError from "../../assets/NotFound.jpg"
+import LogoError from "../../assets/Error.jpg";
 import styled from "styled-components";
-import { useTheme } from "../../utils/hooks"
+import { useTheme } from "../../utils/hooks";
+import colors from "../../utils/style/colors";
 
 const ErrorWraper = styled.div`
 display: flex;
@@ -11,7 +12,7 @@ align-items: center;
 const ErrorTitle = styled.h2`
 margin-top: 50px;
 margin-bottom: 50px;
-color: ${({ theme }) => (theme === 'light' ? '#1D6154' : '#ffffff')};
+color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
 `
 
 const ErrorIllustration = styled.img`
@@ -21,10 +22,10 @@ height: auto;
 
 const ErrorSubtitle = styled.h3`
 margin-top: 50px;
-color: ${({ theme }) => (theme === 'light' ? '#1D6154' : '#ffffff')};
+color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
 `
 
-const NotFound = () => {
+const Error = () => {
 
     const { theme } = useTheme();
 
@@ -37,4 +38,4 @@ const NotFound = () => {
     )
 }
 
-export default NotFound;
+export default Error;

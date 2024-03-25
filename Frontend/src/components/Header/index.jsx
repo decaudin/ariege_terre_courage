@@ -1,7 +1,8 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import logo from '../../assets/logo.webp';
 import { Link } from "react-router-dom";
 import { useTheme } from "../../utils/hooks"; 
+import colors from "../../utils/style/colors"
 
 const NavContainer = styled.div`
 display: flex;
@@ -18,9 +19,24 @@ justify-content: space-between;
 align-items: center;
 `
 
+const underlineAnimation = keyframes`
+    from {
+        text-decoration: none;
+    }
+    to {
+        text-decoration: underline;
+    }
+`;
+
 const StyledLink = styled(Link)`
 text-decoration: none;
 color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+position: relative;
+
+&:hover {
+    color: ${colors.primary};
+    animation: ${underlineAnimation} 0.3s ease forwards;
+}
 `
 
 const Header = () => {

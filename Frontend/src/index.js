@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Map from './pages/Map';
 import Hikes from './pages/Hikes';
 import HikingRetail from './pages/HikingRetail';
-import NotFound from './pages/NotFound'
+import Error from './pages/Error'
 import Footer from './components/Footer';
 import './index.css';
 import GlobalStyle from './utils/style/GlobalStyle';
@@ -25,7 +25,7 @@ root.render(
           <Route path="/map" element={<Map />} />
           <Route path="/hikes" element={<Hikes />} />
           <Route path="/hikes/:id" element={<HikingRetail />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Error />} />
         </Routes>
         </DataProvider>
         <Footer />
