@@ -1,49 +1,40 @@
-import styled, { keyframes, css } from "styled-components";
-import { useTheme } from "../../utils/hooks";
-
-const rotateSunMoon = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(180deg);
-  }
-`;
+import styled from "styled-components";
+import { useTheme } from "../../utils/hooks/context";
+import IconToggle from "../IconToggle";
 
 const FooterWrapper = styled.div`
-display: flex;
-margin-bottom: 10px;
-margin-top: 50px;
+  display: flex;
+  margin-bottom: 10px;
+  margin-top: 50px;
+
+  @media (max-width: 768px) {
+      height: 25vh;
+      flex-direction: column-reverse;
+  }
 `
 
 const FooterParagraph = styled.p`
-margin: auto;
-color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+  margin: auto;
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
 
-const NightModeButton = styled.p`
-margin: auto;
-cursor: pointer;
-display: inline-block;
-color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+const NightModeButton = styled.div`
+  margin: auto;
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
-
-const SunMoonIcon = styled.span`
-  display: inline-block;
-  transform-origin: center;
-  ${({ theme }) => theme === "light" ? "" : css`animation: ${rotateSunMoon} 0.3s linear;`}
-`;
 
 const Footer = () => {
 
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme();
 
     return (
         <FooterWrapper>
             <FooterParagraph theme={theme}>© 2024 Decaudin Xavier. Tous droits réservés.</FooterParagraph>
-            <NightModeButton theme={theme} onClick={toggleTheme}>
-                Changer de mode : 
-                <SunMoonIcon>{theme === "light" ? "☀️" : "🌙"}</SunMoonIcon>
+            <NightModeButton theme={theme} >
+                Changer de mode :
+                <IconToggle />
             </NightModeButton>
         </FooterWrapper>
     )

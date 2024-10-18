@@ -1,5 +1,5 @@
-import React, { useState, createContext } from "react";
-import { useFetch } from "../hooks";
+import { useState, createContext } from "react";
+import { useHikesData } from "../hooks/apiRequest/Hikes";
 
 // CONTEXTE POUR LE THEME (JOUR/NUIT)
 
@@ -7,6 +7,7 @@ export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState('light');
+    
     const toggleTheme = () => {
         setTheme(theme === 'light' ? 'dark' : 'light')
     }
@@ -24,12 +25,12 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
 
-    const { data, isLoading } = useFetch('/Data/data.json');
+  const { data, isLoading } = useHikesData('/Data/data.json');
   
-    return (
-      <DataContext.Provider value={{ data, isLoading }}>
-        {children}
-      </DataContext.Provider>
-    );
-  };
+  return (
+    <DataContext.Provider value={{ data, isLoading }}>
+      {children}
+    </DataContext.Provider>
+  );
+};
   

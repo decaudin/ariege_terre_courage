@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Polyline } from 'react-leaflet';
+import { useEffect, useState } from 'react';
+import { MapContainer, TileLayer, Polyline, Tooltip } from 'react-leaflet';
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useData } from '../../utils/hooks';
+import { useData } from '../../utils/hooks/context';
 import { Loader } from "../../utils/style/loader"
 
 const MapWrapper = styled.div`
-  margin: auto;
-  margin-top: 20px;
-  width: 95%;
-  height: 100vh;
+    margin: auto;
+    margin-top: 20px;
+    width: 95%;
+    height: 80vh;
 `
 
 const StyledMapContainer = styled(MapContainer)`
-width: 100%;
-height: 100%;
+    height: 100%;
+    box-shadow: 3px 3px 8px rgb(207, 207, 207);
+    border-radius: 5px;
 `
 
 const Map = () => {
@@ -37,6 +38,7 @@ const Map = () => {
       if (!isLoading) {
         const pathsWithId = data.map(hike => ({
           id: hike.id,
+          name: hike.title,
           coordinates: hike.coordinates.map(coord => [parseFloat(coord.lat), parseFloat(coord.lon)])
         }));
         setPath(pathsWithId);
@@ -56,12 +58,11 @@ const Map = () => {
     <MapWrapper>
       {isLoading && <Loader />}
       <StyledMapContainer center={[initialLat, initialLon]} zoom={11} maxBounds={maxBounds} maxBoundsViscosity={1.0} onClick={handleMapClick}>
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
+        <TileLayer url="https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png" attribution='&copy; <a href="https://opentopomap.org/">OpenTopoMap</a>' />
         {path.map((hike, index) => (
-          <Polyline key={index} positions={hike.coordinates} color="blue" eventHandlers={{click: handleClick(hike.id)}}/>
+          <Polyline key={index} positions={hike.coordinates} color="red" eventHandlers={{click: handleClick(hike.id)}}>
+            <Tooltip>{hike.name}</Tooltip>
+          </Polyline>
         ))}
       </StyledMapContainer>
     </MapWrapper>

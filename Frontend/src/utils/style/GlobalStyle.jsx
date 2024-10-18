@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { useTheme } from "../hooks";
+import { useTheme } from "../hooks/context";
 import colors from "./colors";
 
 const StyledGlobalStyle = createGlobalStyle`
