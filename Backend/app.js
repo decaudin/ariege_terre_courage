@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require("cors");
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
+const commentRoutes = require('./routes/comment');
 require('dotenv').config();
 
 const app = express();
@@ -38,5 +39,6 @@ app.use(express.json());
 // Définition des routes de l'API
 
 app.use("/api/auth", userRoutes); // Les requêtes HTTP commençant par /api/auth seront gérées par les routes définies dans le module userRoutes
+app.use("/api/comment", commentRoutes); // Les requêtes HTTP commençant par /api/comment seront gérées par les routes définies dans le module commentRoutes
 
 module.exports = app;

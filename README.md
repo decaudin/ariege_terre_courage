@@ -1,14 +1,29 @@
 #  Randonnées en Couserans 
 
-## Bonjour et bienvenue sur ce site qui répertorie quelques randonnées en couserans. Bonnes promenades !
+**Bonjour et bienvenue sur l'application !**
 
-### Installation:
+Découvrez une interface conviviale où vous pourrez explorer différentes randonnées dans le Couserans et visualiser leurs parcours sur une carte interactive. Chaque randonnée est accompagnée de détails tels qu'une description complète, la durée estimée, la distance, le dénivelé, ainsi que quelques photos. Créez votre compte et venez partager vos avis et expériences sur ces randonnées avec nous !
 
-1. Clonez le repository :  
-   `git clone https://github.com/decaudin/ariege_terre_courage.git`
+**Bonnes randonnées à toutes et à tous !**
 
-2. Installez les dépendances :  
-   `npm install`
+## Installation et Exécution:
 
-3. Lancez l'application :  
-   `npm start`
+### Cloner le projet :
+
+`git clone https://github.com/decaudin/ariege_terre_courage.git`
+
+### Lancer le Backend :
+
+```
+cd Backend
+npm install
+npm start
+```
+
+### Lancer le Frontend :
+
+```
+cd Frontend
+npm install
+npm start
+```

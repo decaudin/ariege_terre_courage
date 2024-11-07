@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useTheme } from "../../utils/hooks/context";
-import IconToggle from "../IconToggle";
+import { useTheme } from "../../utils/hooks/context/Theme";
+import ThemeToggle from "../ThemeToggle";
 
 const FooterWrapper = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const Footer = () => {
             <FooterParagraph theme={theme}>© 2024 Decaudin Xavier. Tous droits réservés.</FooterParagraph>
             <NightModeButton theme={theme} >
                 Changer de mode :
-                <IconToggle />
+                <ThemeToggle />
             </NightModeButton>
         </FooterWrapper>
     )

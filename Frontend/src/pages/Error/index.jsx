@@ -1,6 +1,6 @@
 import LogoError from "../../assets/Error.jpg";
 import styled from "styled-components";
-import { useTheme } from "../../utils/hooks/context";
+import { useTheme } from "../../utils/hooks/context/Theme";
 import colors from "../../utils/style/colors";
 
 const ErrorWraper = styled.div`

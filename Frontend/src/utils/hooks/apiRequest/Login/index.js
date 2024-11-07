@@ -1,30 +1,38 @@
 import { useState } from 'react';
+import { useAuth } from '../../context/Auth';
 
-export const useLogin = () => {
+// HOOK POUR SE CONNECTER
+
+export const useLogin = (url) => {
+
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+    const { login } = useAuth();
 
-    const loginUser = async (credentials) => {
+    const loginUser = async (formData) => {
         setIsLoading(true);
+        setIsError(false);
         try {
-            const response = await fetch('/api/auth/login', {
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(credentials),
+                body: JSON.stringify(formData),
             });
             if (!response.ok) {
                 throw new Error('Login failed');
             }
             const data = await response.json();
-            // Stocker le token ou gérer la session
+            login(data.token, data.userId, data.userName);
+            return true; 
         } catch (error) {
             setIsError(true);
+            return false;
         } finally {
             setIsLoading(false);
         }
     };
 
-    return { loginUser, isLoading, isError };
+    return { loginUser, isError, isLoading };
 };

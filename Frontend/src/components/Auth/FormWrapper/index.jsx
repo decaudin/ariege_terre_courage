@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const LoginWrapper = styled.div`
     width: 50%;
-    height: 400px;
+    height: 450px;
     border: 2px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
     background: transparent;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useTheme, useData } from "../../utils/hooks/context";
+import { useTheme } from "../../utils/hooks/context/Theme";
+import { useData } from "../../utils/hooks/context/Hikes";
 import { Loader } from "../../utils/style/loader"
 
 const HikesWrapper = styled.ul`

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Polyline, Tooltip } from 'react-leaflet';
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useData } from '../../utils/hooks/context';
+import { useData } from '../../utils/hooks/context/Hikes';
 import { Loader } from "../../utils/style/loader"
 
 const MapWrapper = styled.div`

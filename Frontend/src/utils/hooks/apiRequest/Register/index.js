@@ -9,6 +9,7 @@ export const useRegister = (url) => {
 
     const registerUser = async (formData) => {
         setIsLoading(true);
+        setIsError(false);
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -18,14 +19,18 @@ export const useRegister = (url) => {
                 body: JSON.stringify(formData),
             });
             if (!response.ok) {
-                throw new Error('Registration failed');
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Registration failed');
             }
+            return true;
         } catch (error) {
             setIsError(true);
+            console.error(error.message || error);
+            return false;
         } finally {
             setIsLoading(false);
         }
     };
 
-    return { registerUser, isLoading, isError };
+    return { registerUser, isError, isLoading };
 };

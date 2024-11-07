@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useTheme } from "../../utils/hooks/context";
+import { useTheme } from "../../utils/hooks/context/Theme";
 import Contact from "../../components/Contact";
 import colors from "../../utils/style/colors.js"
 

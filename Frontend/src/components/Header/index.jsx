@@ -1,8 +1,9 @@
 import styled, { keyframes } from "styled-components";
 import logo from '../../assets/logo.webp';
-import { Link } from "react-router-dom";
-import { useTheme } from "../../utils/hooks/context"; 
-import colors from "../../utils/style/colors"
+import { NavLink, Link } from "react-router-dom";
+import { useTheme } from "../../utils/hooks/context/Theme"; 
+import colors from "../../utils/style/colors";
+import { useAuth } from "../../utils/hooks/context/Auth";
 
 const NavContainer = styled.div`
     display: flex;
@@ -17,7 +18,7 @@ const NavContainer = styled.div`
     }
 `
 
-const LogoLink = styled(Link)`
+const LogoLink = styled(NavLink)`
 
     @media (max-width: 768px) {
         margin: auto;
@@ -47,9 +48,29 @@ const underlineAnimation = keyframes`
     to {
         text-decoration: underline;
     }
-`;
+`
 
-const StyledLink = styled(Link)`
+const StyledLink = styled(NavLink)`
+    text-decoration: none;
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+    position: relative;
+
+    &:hover {
+        color: ${colors.primary};
+        animation: ${underlineAnimation} 0.3s ease forwards;
+    }
+
+    &.active{
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        text-transform: uppercase;
+        font-size: 15px;
+    }    
+`
+
+const Logout = styled(Link)`
     text-decoration: none;
     color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
     position: relative;
@@ -63,12 +84,12 @@ const StyledLink = styled(Link)`
         text-transform: uppercase;
         font-size: 15px;
     }
-    
 `
 
 const Header = () => {
 
     const { theme } = useTheme();
+    const { user, logout } = useAuth();
 
     return (
         <NavContainer>
@@ -80,7 +101,11 @@ const Header = () => {
                 <StyledLink theme={theme} to="/map">Carte</StyledLink>
                 <StyledLink theme={theme} to="/hikes">Randonnées</StyledLink>
                 {/*<StyledLink theme={theme} to="/contact">Contact</StyledLink>*/}
-                <StyledLink theme={theme} to="/login">Login</StyledLink>
+                {user ? (
+                    <Logout theme={theme} onClick={logout}>Logout</Logout>
+                ) : (
+                    <StyledLink theme={theme} to="/login">Login</StyledLink>
+                )}
             </NavBar>
         </NavContainer>
     )
