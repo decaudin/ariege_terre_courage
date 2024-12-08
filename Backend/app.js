@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require("cors");
 const mongoose = require('mongoose');
+const path = require('path'); //Essai
 const userRoutes = require('./routes/user');
 const commentRoutes = require('./routes/comment');
 require('dotenv').config();
@@ -35,6 +36,10 @@ app.use(cors({
 // Middleware pour parser les requêtes en JSON
 
 app.use(express.json());
+
+// Expose le dossier "images" à la racine du Backend
+
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Définition des routes de l'API
 

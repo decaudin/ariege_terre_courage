@@ -1,10 +1,10 @@
 const validateDifficulty = (req, res, next) => {
     const difficulty = req.body.difficulty;
   
-    const validDifficulties = ['beginner', 'intermediate', 'hard', 'expert'];
+    const validDifficulties = ['débutant', 'intermédiaire', 'difficile', 'expert'];
   
     if (!validDifficulties.includes(difficulty)) {
-        return res.status(400).json({ error: "La difficulté doit être 'beginner', 'intermediate', 'hard' ou 'expert'" });
+        return res.status(400).json({ error: "La difficulté doit être 'débutant', 'intermédiaire', 'difficile' ou 'expert'" });
     }
     next();
   };

@@ -2,12 +2,12 @@ import { useState } from "react";
 
 const useSubmitForm = (url) => {
 
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
     
     const submitForm = async (data) => {
-        setLoading(true);
-        setError(false);
+        setIsLoading(true);
+        setIsError(false);
         
         try {
             const response = await fetch(url, {
@@ -25,13 +25,13 @@ const useSubmitForm = (url) => {
             const result = await response.json();
             return result;
         } catch (err) {
-            setError(err.message);
+            setIsError(err.message);
         } finally {
-            setLoading(false);
+            setIsLoading(false);
         }
     };
 
-    return { submitForm, loading, error };
+    return { submitForm, isLoading, isError };
 };
 
 export default useSubmitForm;

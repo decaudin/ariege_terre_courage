@@ -1,4 +1,4 @@
-export const handleChange = (setFormData) => (e) => {
+export const handleChange = (setter) => (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setter((prevData) => ({ ...prevData, [name]: value }));
 };

@@ -10,6 +10,7 @@ const validateDuration = require("../middleware/comment/duration-validator");
 
 // Définit les routes pour les différentes actions liées aux commentaires, associe les fonctions de contrôleurs appropriées à la méthode HTTP correspondante.
 
+router.get("/get", commentCtrl.getComments);
 router.post("/add", upload.array("files", 3), validateDate, validateDuration, validateRating, validateComment, validateDifficulty, commentCtrl.addComment );
   
 
