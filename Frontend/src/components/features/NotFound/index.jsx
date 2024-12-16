@@ -12,7 +12,7 @@ const ErrorWraper = styled.div`
 const ErrorTitle = styled.h2`
     margin-top: 50px;
     margin-bottom: 50px;
-    color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
+    color: ${({ theme }) => (theme === 'light' ? colors.primaryLight : colors.primaryDark)};
 `
 
 const ErrorIllustration = styled.img`
@@ -26,7 +26,7 @@ const ErrorIllustration = styled.img`
 
 const ErrorSubtitle = styled.h3`
     margin-top: 50px;
-    color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
+    color: ${({ theme }) => (theme === 'light' ? colors.primaryLight : colors.primaryDark)};
 
     @media (max-width: 768px) {
         width: 80%;

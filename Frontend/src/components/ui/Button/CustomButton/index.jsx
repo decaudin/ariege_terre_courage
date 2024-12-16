@@ -5,7 +5,7 @@ import { useTheme } from "../../../../utils/hooks/context/Theme";
 const StyledButton = styled.button`
     margin-top: 50px;
     text-decoration: none;
-    background-color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
+    background-color: ${({ theme }) => (theme === 'light' ? colors.primaryLight : colors.primaryDark)};
     color: ${({ theme }) => (theme === 'light' ? '#ffffff' : '#000000')};
     border-radius: 2em;
     padding: 15px 40px;

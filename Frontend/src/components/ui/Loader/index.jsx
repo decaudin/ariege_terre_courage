@@ -15,7 +15,7 @@ export const Loader = styled.div`
     margin: auto;
     display: flex;
     padding: 10px;
-    border: 6px solid ${colors.primary};
+    border: 6px solid ${colors.primaryLight};
     border-bottom-color: transparent;
     border-radius: 22px;
     animation: ${rotate} 1s infinite linear; 

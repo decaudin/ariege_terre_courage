@@ -5,16 +5,11 @@ export const NavigationButton = styled.button`
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: white;
     padding: 10px;
     z-index: 2;
 `
 
-const PrevButton = NavigationButton(styled)
-
-const NextButton = NavigationButton(styled)
-
-export const NavigationButtons = ({ pictures, setCurrentIndex }) => {
+export const NavigationButtons = ({ pictures, setCurrentIndex, PrevButton, NextButton }) => {
 
     const handlePrev = () => {
       setCurrentIndex((prevIndex) => prevIndex === 0 ? pictures.length - 1 : prevIndex - 1);

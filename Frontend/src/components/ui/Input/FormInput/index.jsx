@@ -17,7 +17,7 @@ const Label = styled.label`
     clip: rect(0, 0, 0, 0);
     border: 0;
 
-    ${({ $customStyles }) => $customStyles}
+    ${({ $labelStyles }) => $labelStyles}
 `
 
 const Input = styled.input`
@@ -38,11 +38,11 @@ const Input = styled.input`
     ${({ $inputStyles }) => $inputStyles}
 `
 
-const FormInput = ({ label, id, type, name, placeholder, $customStyles, $inputStyles, onChange, $isInvalid, ...props }) => {
+const FormInput = ({ label, id, type, name, placeholder, $labelStyles, $inputStyles, onChange, $isInvalid, ...props }) => {
 
     return (   
         <InputWrapper>
-            <Label htmlFor={id} $customStyles={$customStyles}>{label}</Label>
+            <Label htmlFor={id} $labelStyles={$labelStyles}>{label}</Label>
             <Input type={type} id={id} name={name} placeholder={placeholder} $inputStyles={$isInvalid ? null : $inputStyles} onChange={onChange} $isInvalid={$isInvalid}  {...props} />
         </InputWrapper> 
     )

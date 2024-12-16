@@ -5,7 +5,7 @@ import { useTheme } from "../../../utils/hooks/context/Theme";
 import colors from "../../../utils/style/colors";
 import { useAuth } from "../../../utils/hooks/context/Auth";
 
-const NavContainer = styled.div`
+const HeaderContainer = styled.header`
     display: flex;
     width: 90%;
     margin: auto;
@@ -26,7 +26,7 @@ const LogoLink = styled(NavLink)`
     }
 `
 
-const NavBar = styled.div`
+const NavBar = styled.nav`
     width: 25%;
     display: flex;
     justify-content: space-between;
@@ -92,7 +92,7 @@ const Header = () => {
     const { user, logout } = useAuth();
 
     return (
-        <NavContainer>
+        <HeaderContainer>
             <LogoLink to ="/">
                 <img src={logo} alt="logo couserans" />
             </LogoLink>
@@ -107,7 +107,7 @@ const Header = () => {
                     <StyledLink theme={theme} to="/login">Login</StyledLink>
                 )}
             </NavBar>
-        </NavContainer>
+        </HeaderContainer>
     )
 }
 

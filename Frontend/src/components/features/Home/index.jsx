@@ -3,7 +3,7 @@ import { useTheme } from "../../../utils/hooks/context/Theme";
 import Contact from "../Contact";
 import colors from "../../../utils/style/colors.js";
 
-const HomeWrapper = styled.div`
+const HomeWrapper = styled.main`
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -13,18 +13,18 @@ const HomeWrapper = styled.div`
 const HomeTitle = styled.h1`
     margin: auto;
     margin-bottom: 40px;
-    color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
+    color: ${({ theme }) => (theme === 'light' ? colors.primaryLight : colors.primaryDark)};
 `
 
 const HomeSubtitle = styled.h2`
     margin: auto;
     margin-bottom: 40px;
-    color: ${({ theme }) => (theme === 'light' ? '#2F2E41' : '#ffffff')};
+    color: ${({ theme }) => (theme === 'light' ? colors.backgroundDark : colors.primaryDark)};
 `
 
 const HomeParagraph = styled.p`
     line-height: 1.5;
-    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : colors.primaryDark)};
 `
 
 const HomeContent = () => {

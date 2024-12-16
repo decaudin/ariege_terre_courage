@@ -56,5 +56,3 @@ const LoginInput = () => {
 }
 
 export default LoginInput
-
-// Rajouter un Input type checkBox Remeber Me pour s'il est cliquer stocker token et user dans localStorage sinon sessionStorage

@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { useTheme } from "../../../utils/hooks/context/Theme";
 import ThemeToggle from "../ThemeToggle";
+import colors from "../../../utils/style/colors";
 
-const FooterWrapper = styled.div`
+const FooterWrapper = styled.footer`
   display: flex;
   margin-bottom: 10px;
   margin-top: 50px;
@@ -15,14 +16,14 @@ const FooterWrapper = styled.div`
 
 const FooterParagraph = styled.p`
   margin: auto;
-  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : colors.primaryDark)};
 `
 
 const NightModeButton = styled.div`
   margin: auto;
   display: flex;
   align-items: center;
-  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : colors.primaryDark)};
 `
 
 const Footer = () => {
@@ -31,7 +32,7 @@ const Footer = () => {
 
     return (
         <FooterWrapper>
-            <FooterParagraph theme={theme}>© 2024 Decaudin Xavier. Tous droits réservés.</FooterParagraph>
+            <FooterParagraph theme={theme}>© 2024 Decaudin Xavier. Fait avec ❤️</FooterParagraph>
             <NightModeButton theme={theme} >
                 Changer de mode :
                 <ThemeToggle />

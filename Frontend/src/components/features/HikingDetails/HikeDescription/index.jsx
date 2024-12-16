@@ -5,12 +5,12 @@ import { useTheme } from "../../../../utils/hooks/context/Theme";
 const Title = styled.h2`
     margin-top: 20px;
     margin-bottom: 40px;
-    color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
+    color: ${({ theme }) => (theme === 'light' ? colors.primaryLight : colors.primaryDark)};
 `
 
 const Text = styled.p`
     margin-top: 20px;
-    color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+    color: ${({ theme }) => (theme === 'light' ? '#000000' : colors.primaryDark)};
 `
 
 const Description = styled(Text)`
@@ -27,7 +27,7 @@ const Elevation = styled(Text)``
 
 const ImagePresentation = styled.h3`
     margin-top: 30px;
-    color: ${({ theme }) => (theme === 'light' ? colors.primary : '#ffffff')};
+    color: ${({ theme }) => (theme === 'light' ? colors.primaryLight : colors.primaryDark )};
 `
 
 const HikeDescription = ({hikeDetails}) => {

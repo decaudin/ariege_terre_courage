@@ -50,13 +50,12 @@ const Image = styled.img`
     height: 250px;
     object-fit: cover;
     border-radius: 10px;
-    box-shadow: 3px 3px 8px rgb(0,0,0);
+    box-shadow: ${({ theme }) => (theme === 'light' ? '3px 3px 8px rgb(0,0,0)' : '0 0 15px rgba(255, 255, 255, 0.6)')};
 `
 
 const Hikes = () => {
 
     const { theme } = useTheme();
-    
     const { data, isLoading } = useData();
 
     return (
@@ -64,9 +63,9 @@ const Hikes = () => {
             {isLoading && <Loader theme={theme} />} 
             {data.map(hike => (
                 <HikesList key={hike.id}>
-                    <StyledLink theme={theme} to={`/hikes/${hike.id}`}>
+                    <StyledLink to={`/hikes/${hike.id}`}>
                         <Title>{hike.title}</Title>
-                        {<Image key={hike.imageUrls[0]} src={process.env.PUBLIC_URL + hike.imageUrls[0]} alt={hike.imageUrls[0]} />}
+                        {<Image theme={theme} key={hike.imageUrls[0]} src={process.env.PUBLIC_URL + hike.imageUrls[0]} alt={hike.imageUrls[0]} />}
                     </StyledLink>
                 </HikesList>
             ))}

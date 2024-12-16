@@ -13,7 +13,7 @@ const commentSchema = mongoose.Schema({
   },
   files: [{ type: String, required: true }],
   hikeId: { type: String, required: true },
-  // Rajouter Userid
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 });
 
 module.exports = mongoose.model("Comment", commentSchema); // Exportation du modèle d'utilisation créé à partir du schéma
