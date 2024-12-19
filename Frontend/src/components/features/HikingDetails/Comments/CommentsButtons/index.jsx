@@ -27,7 +27,7 @@ const CommentsButtons = () => {
 
     const handleAddCommentClick = () => {
         if (!user) {
-            toast.info(<LoginToastMessage navigate={navigate} />, { autoClose: 3500 });
+            toast.info(<LoginToastMessage navigate={navigate} />, { style: { marginTop: '70px' }, position: "top-right", autoClose: 5000 });
         } else {
             setIsAddCommentsModalOpen(true);
         }
@@ -51,8 +51,8 @@ const CommentsButtons = () => {
                 <Button onClick={handleAddCommentClick}>Ajouter mon expérience</Button>
                 <Button onClick={handleCommentsListClick}>Découvrir les aventures</Button>
             </ButtonsWrapper>
-            {isAddCommentsModalOpen && <AddCommentsModal onClose={closeAddCommentsModal} /> }
-            {isCommentsListModalOpen && <CommentsListModal onClose={closeCommentsListModal} /> }
+            {isAddCommentsModalOpen && <AddCommentsModal onClose={closeAddCommentsModal} />}
+            {isCommentsListModalOpen && <CommentsListModal onClose={closeCommentsListModal} />}
         </> 
     )
 }

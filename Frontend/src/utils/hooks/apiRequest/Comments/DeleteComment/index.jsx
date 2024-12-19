@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const useSubmitForm = (url) => {
+const useDeleteComment= (url) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const navigate = useNavigate();
     
-    const submitForm = async (data) => {
+    const deleteComment = async (id) => {
         setIsLoading(true);
         setIsError(false);
 
@@ -20,12 +20,11 @@ const useSubmitForm = (url) => {
         }
         
         try {
-            const response = await fetch(url, {
-                method: 'POST',
+            const response = await fetch(`${url}/${id}`, {
+                method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
-                body: data,
             });
             
             if (!response.ok) {
@@ -41,7 +40,7 @@ const useSubmitForm = (url) => {
         }
     };
 
-    return { submitForm, isLoading, isError };
+    return { deleteComment, isLoading, isError };
 };
 
-export default useSubmitForm;
+export default useDeleteComment;

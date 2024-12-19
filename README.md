@@ -19,11 +19,12 @@ Explorez différentes randonnées dans le Couserans, visualisez leur parcours su
 2. Récupérez l'URL de connexion depuis l'interface MongoDB Atlas.
 3. Créez un fichier .env à la racine du dossier Backend et ajoutez-y les variables suivantes, en remplaçant les valeurs par celles récupérées dans MongoDB Atlas.
 
+```
 DB_USERNAME=VotreNomUtilisateur
 DB_PASSWORD=VotreMotDePasse
 DB_CLUSTER=VotreNomDeCluster
 DB_NAME=VotreNomDeBDD 
-
+```
 
 ### Lancer le Backend :
 

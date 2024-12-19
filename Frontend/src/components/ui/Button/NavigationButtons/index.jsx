@@ -6,7 +6,6 @@ export const NavigationButton = styled.button`
     font-size: 24px;
     cursor: pointer;
     padding: 10px;
-    z-index: 2;
 `
 
 export const NavigationButtons = ({ pictures, setCurrentIndex, PrevButton, NextButton }) => {

@@ -28,10 +28,18 @@ const BaseButton = styled(NavigationButton)`
 
 const PrevButton = styled(BaseButton)`
   left: 8px;
+
+    @media (max-width: 768px) {
+      left: 0;
+    }
 `
 
 const NextButton = styled(BaseButton)`
   right: 8px;
+
+    @media (max-width: 768px) {
+      right: 0;
+    }
 `
 
 const PhotosModal = ({ photos, title, currentIndex, onClose }) => {

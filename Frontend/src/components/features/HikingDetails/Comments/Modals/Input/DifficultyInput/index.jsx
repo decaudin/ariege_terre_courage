@@ -14,10 +14,14 @@ const RadioWrapper = styled.div`
 
 const LabelStyled = `
     position: static;
-    font-size: 0.9vw;
+    font-size: 13px;
     width: auto;
     height: auto;
     margin-bottom: 10px;
+
+    @media screen and (max-width: 320px) {
+        font-size: 11px;
+    }
 `
 
 const InputStyled = `

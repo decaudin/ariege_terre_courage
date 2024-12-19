@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { ModalOverlay, ModalContainer } from "../../../../../ui/Modal";
 import { FormTitle } from "../../../../../ui/Input/FormTitle";
 import { CloseButton } from "../../../../../ui/Button/CloseButton";
@@ -37,6 +38,17 @@ const LabelStyled = `
 const InputStyled = `
     color: black;
     border: 2px solid;
+`
+
+const InputWrapperStyled = `
+    width: 50%;
+`
+const InputFilesWrapperStyled = `
+    width: 50%;
+
+    @media (max-width: 375px) {
+        width: 60%;
+    }
 `
 
 const LabelFileStyled = `
@@ -139,8 +151,10 @@ const AddCommentsModal = ({onClose}) => {
         
         const result = await submitForm(formData);
 
-        if (result) 
+        if (result) {
             onClose();
+            toast.success('Votre commentaire a bien été ajouté !', { autoClose :3000, style: { marginTop: '30px' }, position: "top-right" })
+        }
     }
 
     return (
@@ -149,7 +163,7 @@ const AddCommentsModal = ({onClose}) => {
                     <CommentsTitle>Racontez-nous votre aventure !</CommentsTitle>
                     <CloseButton onClose={onClose} />
                     <form onSubmit={handleSubmit}>
-                        <FormInput label="Date :" id="date" type="date" name="date" value={date} $isInvalid={!!errors.date} onChange={handleDateChange} $labelStyles={LabelStyled} $inputStyles={InputStyled} />
+                        <FormInput label="Date :" id="date" type="date" name="date" value={date} $isInvalid={!!errors.date} onChange={handleDateChange} $inputWrapperStyles={InputWrapperStyled} $labelStyles={LabelStyled} $inputStyles={InputStyled} />
                         {errors.date && <SecondStyledErrorMessage>{errors.date}</SecondStyledErrorMessage>}
                         <DurationSelection duration={duration} onDurationChange={handleDurationChange} errors={errors}/>
                         {errors.duration && <SecondStyledErrorMessage>{errors.duration}</SecondStyledErrorMessage>}
@@ -167,7 +181,7 @@ const AddCommentsModal = ({onClose}) => {
                         {errors.comment && <StyledErrorMessage>{errors.comment}</StyledErrorMessage>}
                         <DifficultySelection value={difficulty} onChange={handleDifficultyChange}/>
                         {errors.difficulty && <SecondStyledErrorMessage>{errors.difficulty}</SecondStyledErrorMessage>}
-                        {files.length < 3 && (<FormInput type="file" id="file" name="files" label="+ Montrez nous vos photos !" $isInvalid={!!errors.files} onChange={handleFileChange} $labelStyles={LabelFileStyled} $inputStyles={InputFileStyled} />)}
+                        {files.length < 3 && (<FormInput type="file" id="file" name="files" label="+ Montrez nous vos photos !" $isInvalid={!!errors.files} onChange={handleFileChange} $inputWrapperStyles={InputFilesWrapperStyled} $labelStyles={LabelFileStyled} $inputStyles={InputFileStyled} />)}
                         {errors.files && <StyledErrorMessage>{errors.files}</StyledErrorMessage>}
                         <>
                             {files.map((file, index) => (

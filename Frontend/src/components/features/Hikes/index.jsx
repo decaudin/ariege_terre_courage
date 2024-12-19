@@ -20,6 +20,10 @@ const HikesWrapper = styled.ul`
     @media (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
     }
+
+    @media (max-width: 420px) {
+        width: 100%;
+    }
 `
 
 const HikesList = styled.li`

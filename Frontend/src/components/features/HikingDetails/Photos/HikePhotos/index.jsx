@@ -10,6 +10,10 @@ const ImageWrapper = styled.div`
     @media (max-width: 768px) {
         grid-template-columns: repeat(1, 1fr);
     }
+
+    @media (max-width: 420px) {
+        width: 100%;
+    }
 `
 
 const Image = styled.img`
@@ -30,7 +34,7 @@ const HikePhotos = ({hikeDetails, setSelectedImageIndex, setIsModalOpen}) => {
 
     return (
         <ImageWrapper>
-            {hikeDetails.imageUrls.map((imageUrl, index) => (
+            {hikeDetails.map((imageUrl, index) => (
                 <Image key={imageUrl} src={process.env.PUBLIC_URL + imageUrl} alt={imageUrl} onClick={() => handleImageClick(index)}/>
             ))}
         </ImageWrapper>

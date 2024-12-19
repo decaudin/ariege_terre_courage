@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useData } from "../../../../../../utils/hooks/context/Hikes";
 import { NavigationButton, NavigationButtons } from "../../../../../ui/Button/NavigationButtons";
 import { Loader } from "../../../../../ui/Loader";
@@ -31,9 +31,13 @@ const PrevButton = styled(BaseButton)`
     left: 5%;
 `;
 
+const PrevButtonMemo = React.memo(PrevButton);
+
 const NextButton = styled(BaseButton)`
     right: 5%;
 `;
+
+const NextButtonMemo = React.memo(NextButton);
 
 const ImageCounter = styled.div`
     position: absolute;
@@ -68,7 +72,7 @@ const Carousel = ({ pictures, hikeId }) => {
             {pictures && <CommentImage key={currentIndex} src={`http://localhost:4000/${formattedImage}`} alt={`${title} ${currentIndex + 1}`} />}
             {pictures.length > 1 && (
                 <>
-                    <NavigationButtons pictures={pictures} setCurrentIndex={setCurrentIndex} PrevButton={PrevButton} NextButton={NextButton} />
+                    <NavigationButtons pictures={pictures} setCurrentIndex={setCurrentIndex} PrevButton={PrevButtonMemo} NextButton={NextButtonMemo} />
                     <ImageCounter>{currentIndex + 1}/{pictures.length}</ImageCounter>
                 </>
             )}

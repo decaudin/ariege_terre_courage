@@ -47,7 +47,7 @@ const HikingDetailsMain = () => {
             {hikeDetails && (
                 <>
                     <HikeDescription hikeDetails={hikeDetails} />
-                    <HikePhotos hikeDetails={hikeDetails} setSelectedImageIndex={setSelectedImageIndex} setIsModalOpen={setIsModalOpen} />
+                    <HikePhotos hikeDetails={hikeDetails.imageUrls} setSelectedImageIndex={setSelectedImageIndex} setIsModalOpen={setIsModalOpen} />
                     {isModalOpen && (
                         <PhotosModal photos={hikeDetails.imageUrls} title={hikeDetails.title} currentIndex={selectedImageIndex} onClose={closeModal} />
                     )}

@@ -6,12 +6,12 @@ const useFetchComments = (url) => {
     const [isError, setIsError] = useState(false);
     const [data, setData] = useState(null);
 
-    const fetchComments = useCallback(async () => {
+    const fetchComments = useCallback(async (hikeId) => {
         setIsLoading(true);
         setIsError(false);
 
         try {
-            const response = await fetch(url, {
+            const response = await fetch(`${url}/${hikeId}`, {
                 method: 'GET',
             });
 

@@ -8,8 +8,9 @@ const validateDate = (req, res, next) => {
   const isValidDate = !isNaN(Date.parse(date));
 
   const inputDate = new Date(date);
+  inputDate.setHours(0, 0, 0, 0);
+  
   const today = new Date();
-
   today.setHours(0, 0, 0, 0);
 
   const isNotFutureDate = inputDate <= today;

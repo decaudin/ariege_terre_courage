@@ -1,20 +1,26 @@
 import styled, { keyframes } from "styled-components";
-import logo from '../../../assets/logo.webp';
+import { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import logo from '../../../assets/logo.webp';
+import { useAuth } from "../../../utils/hooks/context/Auth";
 import { useTheme } from "../../../utils/hooks/context/Theme"; 
 import colors from "../../../utils/style/colors";
-import { useAuth } from "../../../utils/hooks/context/Auth";
 
 const HeaderContainer = styled.header`
     display: flex;
     width: 90%;
     margin: auto;
     margin-top: 10px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     justify-content: space-between;
 
     @media (max-width: 768px) {
         flex-direction: column;
+    }
+
+    @media (max-width: 600px) {
+        width: 95%;
     }
 `
 
@@ -22,19 +28,15 @@ const LogoLink = styled(NavLink)`
 
     @media (max-width: 768px) {
         margin: auto;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 `
 
 const NavBar = styled.nav`
-    width: 25%;
+    width: 324px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    @media (max-width: 1024px) {
-        width: 32%;
-    }
 
     @media (max-width: 768px) {
         width: 100%;
@@ -90,6 +92,18 @@ const Header = () => {
 
     const { theme } = useTheme();
     const { user, logout } = useAuth();
+    const [hasLoggedOut, setHasLoggedOut] = useState(false);
+
+    useEffect(() => {
+        if (user === null && hasLoggedOut) {
+            toast.success('Vous avez bien été déconnecté.');
+        }
+    }, [user, hasLoggedOut]);
+
+    const handelLogout = () => {
+        logout();
+        setHasLoggedOut(true)
+    }
 
     return (
         <HeaderContainer>
@@ -100,9 +114,9 @@ const Header = () => {
                 <StyledLink theme={theme} to="/">Accueil</StyledLink>
                 <StyledLink theme={theme} to="/map">Carte</StyledLink>
                 <StyledLink theme={theme} to="/hikes">Randonnées</StyledLink>
-                {/*<StyledLink theme={theme} to="/contact">Contact</StyledLink>*/}
+                {/* <StyledLink theme={theme} to="/contact">Contact</StyledLink> */}
                 {user ? (
-                    <Logout theme={theme} onClick={logout}>Logout</Logout>
+                    <Logout theme={theme} onClick={handelLogout}>Logout</Logout>
                 ) : (
                     <StyledLink theme={theme} to="/login">Login</StyledLink>
                 )}

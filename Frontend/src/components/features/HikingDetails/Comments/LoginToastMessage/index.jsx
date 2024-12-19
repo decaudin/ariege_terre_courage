@@ -1,4 +1,5 @@
-import styled from "styled-components"
+import { toast } from "react-toastify";
+import styled from "styled-components";
 
 const ToastButton = styled.button`
     margin-left: 10px !important;
@@ -10,10 +11,15 @@ const ToastButton = styled.button`
 
 const LoginToastMessage = ({navigate}) => {
 
+    const handleClick = () => {
+        toast.dismiss();
+        navigate('/login')  
+    }
+
     return (
         <>
             Connectez vous pour partager votre expérience ! 
-            <ToastButton onClick={() => navigate('/login')}>Se connecter</ToastButton>
+            <ToastButton onClick={handleClick}>Se connecter</ToastButton>
         </>
     )
 }

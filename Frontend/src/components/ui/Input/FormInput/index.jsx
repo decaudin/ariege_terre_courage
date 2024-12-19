@@ -4,7 +4,9 @@ const InputWrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 50%;
+    width: 55%;
+
+    ${({ $inputWrapperStyles }) => $inputWrapperStyles}
 `
 
 const Label = styled.label`
@@ -38,10 +40,10 @@ const Input = styled.input`
     ${({ $inputStyles }) => $inputStyles}
 `
 
-const FormInput = ({ label, id, type, name, placeholder, $labelStyles, $inputStyles, onChange, $isInvalid, ...props }) => {
+const FormInput = ({ label, id, type, name, placeholder, $inputWrapperStyles, $labelStyles, $inputStyles, onChange, $isInvalid, ...props }) => {
 
     return (   
-        <InputWrapper>
+        <InputWrapper $inputWrapperStyles={$inputWrapperStyles}>
             <Label htmlFor={id} $labelStyles={$labelStyles}>{label}</Label>
             <Input type={type} id={id} name={name} placeholder={placeholder} $inputStyles={$isInvalid ? null : $inputStyles} onChange={onChange} $isInvalid={$isInvalid}  {...props} />
         </InputWrapper> 

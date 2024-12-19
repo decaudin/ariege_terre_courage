@@ -6,10 +6,14 @@ const Submit = styled.input`
     border-radius: 40px;
     display: flex;
     margin: auto;
-    width: 50%;
+    width: 55%;
     height: 35px;
     cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
     opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
+
+    @media (max-width: 600px) {
+        width: 70%;
+    }
 `
 
 export const SubmitInput = ({ type, value, disabled }) => <Submit type={type} value={value} disabled={disabled} />

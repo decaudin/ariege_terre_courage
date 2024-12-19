@@ -10,12 +10,20 @@ const MapWrapper = styled.div`
     margin-top: 20px;
     width: 95%;
     height: 80vh;
+
+    @media (max-width: 600px) {
+      width: 100%;
+    }
 `
 
 const StyledMapContainer = styled(MapContainer)`
     height: 100%;
     box-shadow: 3px 3px 8px rgb(207, 207, 207);
     border-radius: 5px;
+
+    @media (max-width: 600px) {
+      border-radius: 0;
+    }
 `
 
 const HikesMap = () => {

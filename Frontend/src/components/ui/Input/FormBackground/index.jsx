@@ -11,4 +11,20 @@ export const FormBackground = styled.div`
     background-position: center;
     border-radius: 10px;
     box-shadow: 3px 3px 8px rgb(207, 207, 207);
+
+    @media (max-width: 1024px) {
+        width: 70%;
+    }
+
+    @media (max-width: 768px) {
+        width: 80%;
+    }
+
+    @media (max-width: 600px) {
+        width: 90%;
+    }
+
+    @media (max-width: 450px) {
+    width: 100%;
+    }
 `

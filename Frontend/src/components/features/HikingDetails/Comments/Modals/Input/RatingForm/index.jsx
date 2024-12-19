@@ -25,6 +25,10 @@ const StarLabel = styled.label`
     input[type="radio"] {
         display: none;
     }
+
+    @media (max-width: 350px) {
+        font-size: 25px;
+    }
 `
 
 const RatingForm = ({ rating, onChange }) => {
