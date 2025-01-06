@@ -20,9 +20,9 @@ root.render(
   </React.StrictMode>
 );
 
-// 1 - Requête PUT (comments)
-// 2 - Rajouter un Input type checkBox Remeber Me pour s'il est cliqué stocker token et user dans localStorage sinon sessionStorage
-// 3 - Possibilité modif pseudo (PUT user) ? Titre d'accueil personnalisé ? Message quand on se logg/delogg ?
+// 1 - Messages d'erreurs Login ( --> modèle Sign Up)
+// 2 - Requête PUT (comments)
+// 3 - Possibilité modif pseudo (PUT user) ?
 // 4 - Burger Menu (plus de place dans navBar à caus de contact)
 // 5 - Formulaire contact
 // 6 - Balise sémantique vérifier

@@ -4,12 +4,14 @@ import { useAuth } from '../../context/Auth';
 // HOOK POUR SE CONNECTER
 
 export const useLogin = (url) => {
-
+    
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
     const { login } = useAuth();
 
     const loginUser = async (formData) => {
+        
+        const { rememberMe, ...loginData } = formData;
         setIsLoading(true);
         setIsError(false);
         try {
@@ -18,14 +20,14 @@ export const useLogin = (url) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(loginData),
             });
             if (!response.ok) {
                 throw new Error('Login failed');
             }
             const data = await response.json();
-            login(data.token, data.userId, data.userName);
-            return true; 
+            login(data.token, data.userId, data.userName, rememberMe);
+            return true;
         } catch (error) {
             setIsError(true);
             return false;

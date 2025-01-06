@@ -16,7 +16,7 @@ const FooterWrapper = styled.footer`
   }
 
   @media (max-width: 450px) {
-      height: 35vh;
+      height: 38vh;
   }
 `
 

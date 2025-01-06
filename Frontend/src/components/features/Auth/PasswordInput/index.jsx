@@ -7,7 +7,7 @@ const InputPasswordWrapper = styled.div`
     position: relative;
 `
 
-const PasswordInput = ({ label, id, name, placeholder, required, value, onChange, autoComplete, $inputWrapperStyles }) => {
+const PasswordInput = ({ label, id, name, placeholder, required, value, onChange, autoComplete, $inputWrapperStyles, $inputStyles }) => {
 
     const { isPasswordVisible, togglePasswordVisibility } = usePasswordToggle();
 
@@ -23,7 +23,8 @@ const PasswordInput = ({ label, id, name, placeholder, required, value, onChange
                 value={value}
                 onChange={onChange}
                 autoComplete={autoComplete}
-                $inputWrapperStyles = {$inputWrapperStyles}
+                $inputWrapperStyles={$inputWrapperStyles}
+                $inputStyles={$inputStyles}
             />
             <EyeToggle isVisible={isPasswordVisible} onToggle={togglePasswordVisibility} />
         </InputPasswordWrapper>
